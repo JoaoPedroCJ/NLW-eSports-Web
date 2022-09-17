@@ -1,19 +1,5 @@
-const baseurl = "http://localhost:3333";
+import axios from 'axios';
 
-const makeRequest = <T>(url: string, options = {}): Promise<T> =>
-  fetch(`${baseurl}${!url.startsWith("/") && "/"}${url}`, options).then(data => data.json());
-
-export const api = {
-  get: <T>(
-    url: string,
-    options = {
-      method: "GET",
-    }
-  ) => makeRequest<T>(url, options),
-  post: <T>(
-    url: string,
-    options = {
-      method: "POST",
-    }
-  ) => makeRequest<T>(url, options),
-};
+export const api = axios.create({
+  baseURL: 'http://localhost:3333'
+});
